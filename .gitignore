@@ -1,0 +1,9 @@
+# Tex-Files
+*.aux
+*.bbl
+*.blg
+*.log
+*.synctex.gz
+
+# Windows thumbnails
+Thumbs.db
