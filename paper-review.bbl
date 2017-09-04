@@ -59,11 +59,6 @@ Girshick, R. (2015).
 \newblock {Fast R-CNN}.
 \newblock In {\em International Conference on Computer Vision}.
 
-\bibitem[Harris and Stephens, 1988]{harris1988}
-Harris, C. and Stephens, M. (1988).
-\newblock {A} combined corner and edge detector.
-\newblock In {\em Alvey Vision Conference}, pages 147--151.
-
 \bibitem[He et~al., 2017]{he2017}
 He, K., Gkioxari, G., Doll{\'a}r, P., and Girshick, R. (2017).
 \newblock {M}ask {R}-{CNN}.
@@ -73,6 +68,11 @@ He, K., Gkioxari, G., Doll{\'a}r, P., and Girshick, R. (2017).
 He, K., Zhang, X., Ren, S., and Sun, J. (2015).
 \newblock {D}eep {R}esidual {L}earning for {I}mage {R}ecognition.
 \newblock {\em arXiv preprint arXiv:1512.03385}.
+
+\bibitem[He et~al., 2016]{he2016}
+He, K., Zhang, X., Ren, S., and Sun, J. (2016).
+\newblock {I}dentity mappings in deep residual networks.
+\newblock {\em arXiv preprint arXiv:1603.05027}.
 
 \bibitem[Herrmann and Beyerer, 2015]{herrmann2015b}
 Herrmann, C. and Beyerer, J. (2015).
@@ -116,22 +116,10 @@ Letessier, P., Buisson, O., and Joly, A. (2012).
 \newblock {S}calable mining of small visual objects.
 \newblock In {\em ACM Multimedia Conference}, pages 599--608. ACM.
 
-\bibitem[Liu et~al., 2016]{liu2016b}
-Liu, W., Anguelov, D., Erhan, D., Szegedy, C., Reed, S., Fu, C.-Y., and Berg,
-  A.~C. (2016).
-\newblock {SSD}: {S}ingle shot multibox detector.
-\newblock In {\em European conference on computer vision}, pages 21--37.
-  Springer.
-
 \bibitem[Liu et~al., 2015]{liu2015}
 Liu, W., Anguelov, D., Erhan, D., Szegedy, C., and Reed, S.~E. (2015).
 \newblock {SSD}: {S}ingle {S}hot {M}ulti{B}ox {D}etector.
 \newblock {\em CoRR}, abs/1512.02325.
-
-\bibitem[Lowe, 2004]{lowe2004}
-Lowe, D.~G. (2004).
-\newblock {D}istinctive image features from scale-invariant keypoints.
-\newblock {\em International Journal of Computer Vision}, 60(2):91--110.
 
 \bibitem[Manger, 2012]{manger2012}
 Manger, D. (2012).
@@ -164,11 +152,6 @@ Redmon, J., Divvala, S.~K., Girshick, R.~B., and Farhadi, A. (2015).
   {D}etection.
 \newblock {\em CoRR}, abs/1506.02640.
 
-\bibitem[Redmon and Farhadi, 2016]{redmon2016}
-Redmon, J. and Farhadi, A. (2016).
-\newblock {YOLO}9000: better, faster, stronger.
-\newblock {\em arXiv preprint arXiv:1612.08242}.
-
 \bibitem[Ren et~al., 2015]{ren2015}
 Ren, S., He, K., Girshick, R., and Sun, J. (2015).
 \newblock {F}aster {R}-{CNN}: {T}owards real-time object detection with region
@@ -181,13 +164,6 @@ Romberg, S., Pueyo, L.~G., Lienhart, R., and van Zwol, R. (2011).
 \newblock {S}calable {L}ogo {R}ecognition in {R}eal-world {I}mages.
 \newblock In {\em ACM International Conference on Multimedia Retrieval}, ICMR
   '11, pages 25:1--25:8, New York, NY, USA. ACM.
-
-\bibitem[Schapire, 1999]{schapire1999}
-Schapire, R.~E. (1999).
-\newblock {A} {B}rief {I}ntroduction to {B}oosting.
-\newblock In {\em International Joint Conference on Artificial Intelligence},
-  IJCAI'99, pages 1401--1406, San Francisco, CA, USA. Morgan Kaufmann
-  Publishers Inc.
 
 \bibitem[Sermanet et~al., 2013]{sermanet2013}
 Sermanet, P., Eigen, D., Zhang, X., Mathieu, M., Fergus, R., and LeCun, Y.
@@ -213,6 +189,13 @@ Su, H., Zhu, X., and Gong, S. (2016).
 \newblock {D}eep {L}earning {L}ogo {D}etection with {D}ata {E}xpansion by
   {S}ynthesising {C}ontext.
 \newblock {\em CoRR}, abs/1612.09322.
+
+\bibitem[Szegedy et~al., 2015]{szegedy2015}
+Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D.,
+  Vanhoucke, V., and Rabinovich, A. (2015).
+\newblock {G}oing deeper with convolutions.
+\newblock In {\em Conference on Computer Vision and Pattern Recognition}, pages
+  1--9. IEEE.
 
 \bibitem[Tursun et~al., 2017]{tursun2017}
 Tursun, O., Aker, C., and Kalkan, S. (2017).

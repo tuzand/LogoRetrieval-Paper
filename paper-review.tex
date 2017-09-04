@@ -42,6 +42,7 @@
 \newacro{FROC}{Free-Response Receiver Operating Characteristic}
 \newacro{GMM}{Gaussian Mixture Model}
 \newacro{HOG}{Histogram of Oriented Gradients}
+\newacro{LitW}{Logos in the Wild}
 \newacro{PCA}{Principle Component Analysis}
 \newacro{SIFT}{Scale Invariant Feature Transform}
 \newacro{SVM}{Support Vector Machine}
@@ -66,7 +67,7 @@
 
 % --| Actual variables |-----------------------------------------------
 \newcommand{\mne}{\mathit{MNE}}
-\newcommand{\map}{\mathit{map}}
+\newcommand{\map}{$\mathit{map}$}
 \newcommand{\acc}{\mathit{acc}}
 \newcommand{\std}{$\mathit{std}$}
 \newcommand{\TP}{\mathit{TP}}
@@ -95,13 +96,9 @@
 
 \abstract{
 %%TODO write text here, 70-200 words
-%motivation:	open set logo retrieval for broadcast analysis, \xeg to judge advertisement effectiveness 
-%problem: search for unknown logo classes; find all occurrences of a query logo; challenges: geometric distortions, different types
-%approach: two stage concept with detection and comparison, both using a \ac{CNN}, similar to the concept used in other retrieval tasks
-%results: general purpose logo detection yields viable results
-%conclusion: 
-%%
-Searching for logos in image data allows several applications, with judging the effectiveness of advertisement in sports event broadcasts being one example. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a database of images or videos. Currently, common logo retrieval approaches are unsuitable for this task because of their closed world assumption. To address this issue, an open set logo retrieval method is proposed in this work which can search for previously unfamiliar logos only by one query sample. A two stage concept with an open set logo detection and comparison is proposed similar to other retrieval tasks. Both modules are based on task specific \acp{CNN}. To train the detector with appropriate in-the-wild data, an according novel Logos in the Wild dataset is collected and made publicly available. The proposed method extends the application field in comparison to closed set approaches and improvements over baseline methods derived from these state-of-the-art closed set approaches are shown. 
+Current logo retrieval research focuses on closed set scenarios. We argue that the logo domain is too large for this strategy and requires an open set approach. To foster research in this direction, the large-scale Logos in the Wild dataset is collected and released to the public.
+Searching for logos in image data has many applications, with judging the effectiveness of advertisement in sports event broadcasts being one example. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a database of images or videos. Currently, common logo retrieval approaches are unsuitable for this task because of their closed world assumption. To address this issue, an open set logo retrieval method is proposed in this work which allows search for previously unfamiliar logos only by one query sample. A two stage concept with an open set logo detection and comparison is proposed. Both modules are based on task specific \acp{CNN}. The novel Logos in the Wild dataset serves to train the modules with sufficient appropriate in-the-wild data. 
+The proposed method extends the application field in comparison to closed set approaches and significant improvements over baseline methods derived from these state-of-the-art closed set approaches are shown. 
 }
 
 \onecolumn \maketitle \normalsize \vfill
@@ -141,7 +138,7 @@ Consequently, a novel processing strategy for logo retrieval based on a logo det
 The necessity for open set logo retrieval becomes obvious when having a look at the diversity and amount of existing logos and brands\footnote{The term brand is used in this work as synonym for a single logo class. Thus, a brand might also refer to a product or company name if an according logo exists.}. The METU trademark dataset~\cite{tursun2017} contains, for example, over half a million different logos. Given this number, a closed set approach where all different logos are pretrained within the retrieval system is clearly inappropriate.
 This is why our proposed feature extractor generates a discriminative logo descriptor, which generalizes to unseen logos, instead of a mere classification between previously known brands. The well-known high discriminative capabilities of \acp{CNN} allow to construct such a feature extractor.
 
-One challenge for training a general purpose logo detector lies in appropriate training data. Many logo or trademark dataset~\cite{eakins1998,tursun2017} only contain the original logo graphic but no in-the-wild occurrences of these logos which are required for the target application. The need for annotated logo bounding boxes in the images limits the number of suitable datasets. Existing logo datasets~\cite{joly2009,kalantidis2011,romberg2011,letessier2012,bianco2015,su2016,bianco2017} with available bounding boxes are often restricted to a very small number of brands and mostly high quality images. Especially, occlusions, blur and variations within a logo type are only partially covered.
+One challenge for training a general purpose logo detector lies in appropriate training data. Many logo or trademark dataset~\cite{eakins1998,hoi2015,tursun2017} only contain the original logo graphic but no in-the-wild occurrences of these logos which are required for the target application. The need for annotated logo bounding boxes in the images limits the number of suitable datasets. Existing logo datasets~\cite{joly2009,kalantidis2011,romberg2011,letessier2012,bianco2015,su2016,bianco2017} with available bounding boxes are often restricted to a very small number of brands and mostly high quality images. Especially, occlusions, blur and variations within a logo type are only partially covered.
 To address these shortcomings, a novel in-the-wild logo dataset is collected and made publicly available~\footnote{\url{url://to.come}}.
 
 The contributions of this work are threefold:
@@ -189,10 +186,12 @@ The recent DenseNet \cite{huang2016} builds on a ResNet-like architecture and in
 %\noindent- class agnostic detector \\
 %- different base networks: VGG-CNN-M, VGG16
 % TODO
-\noindent The usual approach for scene retrieval is to create a global feature of the input image. This is achieved either by inferring from the complete image or by searching for key regions and then extracting features from the located regions, which are finally fused into a global feature. For logo retrieval, extraction of a global feature is counterproductive because it lacks discriminative power to retrieve small objects. Additionally, global features usually include no information about the size and location of the objects which is also an important factor for logo retrieval.
+\noindent The current state-of-the-art approach for scene retrieval is to create a global feature of the input image. This is achieved either by inferring from the complete image or by searching for key regions and then extracting features from the located regions, which are finally fused into a global feature. For logo retrieval, extraction of a global feature is counterproductive because it lacks discriminative power to retrieve small objects. Additionally, global features usually include no information about the size and location of the objects which is also an important factor for logo retrieval.
 
 Therefore, we choose a two-stage approach consisting of logo detection and logo classification as illustrated in figure~\ref{fig:pipeline}. First, the logos have to be detected in the input image. 
 There are a lot of options to search for objects as explained in cha. Girshick et al. \cite{ren2015} proposed the Faster R-CNN, for end to end learning to detect and classify objects on an image. This network has a bounding box regressor for each trained class, thus it is capable to produce object type specific region proposals.
+
+% Logo comparison and classification can be included in the Faster R-CNN framework at the cost of generalization to unseen classes. We argue that specialization to a few dozen specific brands does not cover the complexity and breadth of the domain.
 
 \section{\uppercase{Logo Comparison}}
 %TODO write text here
@@ -206,11 +205,11 @@ There are a lot of options to search for objects as explained in cha. Girshick e
 %- what is different compared with other datasets? \\
 %- what are the benefits? \\
 %%TODO Christian
-\noindent To train the proposed logo detector and feature extractor, a novel logo dataset is collected to supplement publicly available logo datasets. A comparison to other datasets is given in table~\ref{tab:logoDatasets}.
+\noindent To train the proposed logo detector and feature extractor, a novel logo dataset is collected to supplement publicly available logo datasets. A comparison to other public in-the-wild datasets with annotated bounding boxes is given in table~\ref{tab:logoDatasets}.
 %
 \begin{table*}[t]
 \centering
-\caption{Publicly available logo datasets in comparison with the novel dataset.}
+\caption{Publicly available in-the-wild logo datasets in comparison with the novel dataset.}
 \label{tab:logoDatasets}
 \begin{small}
 \begin{tabular}{cl|ccc}
@@ -302,7 +301,8 @@ The annotation is still an ongoing process and further larger versions of the da
 %- test on FlickrLogos-32 test datasets \\
 %
 %- additional evaluation on own SportsLogos dataset and qualitative results \\
-\noindent The proposed method is evaluated on the test set of the public FlickrLogos-32 dataset including the distractors. Additional experiments are performed on an internal dataset of sports event TV broadcasts. For a proper separation of train and test data, all brands which are present in the FlickrLogos-32 test set are removed from the training data. The training set consists of two parts. The union of all public logo datasets and the novel Logos in the Wild dataset. The respective training and test set sizes are listed in table~\ref{tab:trainData}.
+\noindent The proposed method is evaluated on the test set benchmark of the public FlickrLogos-32 dataset including the distractors. Additional application specific experiments are performed on an internal dataset of sports event TV broadcasts. 
+The training set consists of two parts. The union of all public logo datasets as listed in table~\ref{tab:logoDatasets} and the novel \ac{LitW} dataset. For a proper separation of train and test data, all brands which are present in the FlickrLogos-32 test set are removed from the public and \ac{LitW} data. 10 percent of the remaining images are set aside for network validation in each case. This results in the final training and test set sizes listed in table~\ref{tab:trainTestStatistics}.
 %
 \begin{table}[t]
 \centering
@@ -311,9 +311,15 @@ The annotation is still an ongoing process and further larger versions of the da
 \caption{Train and test set statistics.}
 \label{tab:trainTestStatistics}
 \begin{small}
-\begin{tabular}{l|c}
-?? & ?? %TODO
-\end{tabular}
+% Table generated by Excel2LaTeX from sheet 'Tabelle1'
+\begin{tabular}{cl|rr}
+\textbf{phase} & \multicolumn{1}{c|}{\textbf{data}} & \multicolumn{1}{c}{\textbf{brands}} & \multicolumn{1}{c}{\textbf{RoIs}} \bigstrut[b]\\
+\hline
+\multirow{2}[2]{*}{train} & public & 47    & 3.113 \bigstrut[t]\\
+      & public+\ac{LitW} & 632   & 18.960 \bigstrut[b]\\
+\hline
+test  & FlickrLogos-32 test & 32    & 1.602 \bigstrut[t]\\
+\end{tabular}%
 \end{small}
 \endgroup
 \end{table}
@@ -330,7 +336,7 @@ In all cases the \acp{CNN} are trained until convergence which requires ?? to ??
 %- test first two detectors on own logo dataset => FROC plot\\
 %- Example Detections\\
 %%TODO write text here
-As baseline, the state-of-the-art closed set logo retrieval method from~\cite{??} is employed and trained on the public portion of the training data.
+As baseline, the state-of-the-art closed set logo retrieval method from~\cite{su2016} based on Faster R-CNN is employed and trained on the public portion of the training data.
 It is adapted to open set detection by using the RPN scores as detections. This skips the closed set classification part of the network which is pre-trained on different logos than should be detected on the test set.
 %Because of the closed set training strategy, only brands occurring in the training set are the final outcome of this detector. 
 %Adaptation to open set detection of previously unseen logos is achieved by using the RPN scores before classification as detections.
@@ -341,13 +347,13 @@ The proposed logo detector is first trained on the same public data for comparis
 \begin{figure}%
 \centering%
 \includegraphics[width=\linewidth, trim=0cm 9cm 0cm 0cm, clip]{img/detectionFroc.pdf}%
-\caption{Detection FROC curve for FlickrLogos-32 test set.}%
+\caption{Detection FROC curves for FlickrLogos-32 test set.}%
 \label{fig:detectionFroc}
 \end{figure}%
 %
 
 Further improvement is achieved by combining the public training data with the novel data.
-Adding the Logos in the Wild dataset as additional training data improves the detection results with its large variety of additional training brands. 
+Adding \ac{LitW} as additional training data improves the detection results with its large variety of additional training brands. 
 This confirms findings from other domains, such as face analysis, where wider training datasets are preferred over deeper ones~\cite{bansal2017}. This means it is better to train on additional different brands than on additional samples per brand.
 As direction for future dataset collection, this suggests to focus on additional brands.
 
@@ -359,52 +365,57 @@ As direction for future dataset collection, this suggests to focus on additional
 %%TODO write text here
 %
 For the retrieval experiments, the state-of-the-art closed set logo retrieval method from the previous section is again used as baseline. The class probabilities are interpreted as feature vector which is then used to match previously unseen logos.
-For the proposed open set strategy, the best logo detection network from the previous section is used in all cases. Detected logos are described by the classification network's output feature. Descriptor matching is performed in all cases with cosine similarity. Three different state-of-the-art classification architectures, namely VGG16~\cite{simonyan2014}, ResNet101~\cite{he2015} and DenseNet??~\cite{huang2016}, serve as base for the logo classification stage. All networks are pretrained on ImageNet and afterwards fine-tuned either on the public logo train set or the combination of the public and the Logos in the Wild train data.
+For the proposed open set strategy, the best logo detection network from the previous section is used in all cases. Detected logos are described by the classification network's output feature. Descriptor matching is performed in all cases with cosine similarity. Three different state-of-the-art classification architectures, namely VGG16~\cite{simonyan2014}, ResNet101~\cite{he2015} and DenseNet161~\cite{huang2016}, serve as base for the logo classification stage. All networks are pretrained on ImageNet and afterwards fine-tuned either on the public logo train set or the combination of the public and the \ac{LitW} train data.
 
+\subsubsection*{FlickrLogos-32}
+\vspace*{-2.5mm}
 In 10 iterations, each of the 10 FlickrLogos-32 train samples for each brand serves as query sample. This allows to assess the statistical significance of results similar to a 10-fold-cross-validation strategy. Figure~\ref{fig:classificationFroc} shows the FROC results for the trained networks including indicators for the standard deviation of the measurements. The detection identification rate denotes the amount of ground truth logos which are correctly detected and are assigned the correct brand.
 While the baseline is only able to find a minor amount of the logos, our best performing approach is able to correctly retrieve 25 percent of the logos if tolerating only one false alarm every 100 images.
-As expected, the more recent network architectures provide better results. Also, including the Logos in the Wild data in the training yields a significant boost in performance. Specifically, the larger training dataset has a larger impact on the performance than a better network architecture. 
+As expected, the more recent network architectures provide better results. Also, including the \ac{LitW} data in the training yields a significant boost in performance. Specifically, the larger training dataset has a larger impact on the performance than a better network architecture. 
 %
 \begin{figure}%
 \centering%
 \includegraphics[width=\linewidth, trim=0cm 7cm 0cm 0cm, clip]{img/classificationFroc.pdf}%
-\caption{Detection+Classification FROC curve for FlickrLogos-32 test set. Including dashed indicators for one standard deviation.}%
+\caption{Detection+Classification FROC curves for FlickrLogos-32 test set. Including dashed indicators for one standard deviation. DenseNet results are omitted for clarity, refer to table~\ref{tab:mapFlickr} for full results.}%
 \label{fig:classificationFroc}
 \end{figure}%
 %
 %As far as we are aware, this is the first experiment with open set logo retrieval on 
-Table~\ref{tab:map} compares our open set results with closed set results from the literature in terms of the mean average precision (map). 
+Table~\ref{tab:mapFlickr} compares our open set results with closed set results from the literature in terms of the mean average precision (\map). 
 %
 \begin{table}[t]
 \centering
 \begingroup	
 \setlength{\tabcolsep}{6pt}
 \caption{FlickrLogos-32 test set retrieval results.}
-\label{tab:map}
+\label{tab:mapFlickr}
 \begin{small}
 % Table generated by Excel2LaTeX from sheet 'FlickrLogos-32Test'
 \begin{tabular}{crc}
-\textbf{setting} & \multicolumn{1}{c}{\textbf{method}} & \textbf{map} \bigstrut[b]\\
+\textbf{setting} & \multicolumn{1}{c}{\textbf{method}} & \textbf{\map} \bigstrut[b]\\
 \hline
-\multirow{5}[2]{*}{\begin{sideways}open set\end{sideways}} & baseline~\cite{??} & 0,036 \bigstrut[t]\\
-      & VGG16 - public & 0,286 \\
-      & ResNet101 - public & 0,327 \\
+\multirow{7}[2]{*}{\begin{sideways}open set\end{sideways}} & baseline, public~\cite{su2016} & 0.036 \bigstrut[t]\\
+      & VGG16, public & 0.286 \\
+      & ResNet101, public & 0.327 \\
+      & DenseNet161, public & 0.368 \\
 \cline{2-3}      
-      & VGG16 - public+LitW & 0,382 \bigstrut[t]\\
-      & ResNet101 - public+LitW & 0,464 \bigstrut[b]\\
+      & VGG16, public+\ac{LitW} & 0.382 \bigstrut[t]\\
+      & ResNet101, public+\ac{LitW} & \textbf{0.464} \\
+      & DenseNet161, public+\ac{LitW} & 0.448  \bigstrut[b]\\      
 \hline
-\multirow{4}[1]{*}{\begin{sideways}closed set\end{sideways}} & BD-FRCN-M \cite{oliveira2016} & 0,735 \bigstrut[t]\\	
-      & DeepLogo \cite{iandola2015} & 0,744 \\ %TODO cite values from literature
-      & Faster-RCNN \cite{su2016} & 0,811 \\
-      & Fast-M \cite{bao2016} & 0,842 \\
+\multirow{4}[1]{*}{\begin{sideways}closed set\end{sideways}} & BD-FRCN-M \cite{oliveira2016} & 0.735 \bigstrut[t]\\	
+      & DeepLogo \cite{iandola2015} & 0.744 \\ 
+      & Faster-RCNN \cite{su2016} & 0.811 \\
+      & Fast-M \cite{bao2016} & \textbf{0.842} \\
 \end{tabular}%
 \end{small}
 \endgroup
 \end{table}
-We achieve ?? percent of the closed set performance with only one sample for a brand at test time instead of dozens or hundreds of brand samples at training time.
+We achieve more than half of the closed set performance in terms of \map with only one sample for a brand at test time instead of dozens or hundreds of brand samples at training time. In addition, our approach is not limited to the 32 FlickrLogos brands but generalizes with a similar performance to further brands. In contrast, the closed-set approaches hardly generalize as is shown by the baseline open set method. This is the second best closed set approach only retrained on out-of-test brands.
 
-
-In addition to public data, target domain specific experiments are performed on TV broadcasts of sports events. In total, 1,218 annotated frames with more than 10,000 logos from four different events are available in our SportLogo dataset where 3 events are used for training and one as test set. Refer to table~\ref{tab:sportDataStatistics} for details. In comparison to public logo datasets, the logos are usually significantly smaller in these cases and cover only a tiny fraction of the image area as illustrated in figure~\ref{fig:footballSample}.
+\subsubsection*{SportsLogos}
+\vspace*{-2.5mm}
+In addition to public data, target domain specific experiments are performed on TV broadcasts of sports events. In total, 1,218 annotated frames with more than 10,000 logos from four different events are available in our SportsLogos dataset where 3 events are used for training and one as test set. Refer to table~\ref{tab:sportDataStatistics} for details. In comparison to public logo datasets, the logos are usually significantly smaller in these cases and cover only a tiny fraction of the image area as illustrated in figure~\ref{fig:footballSample}. Consequently, the results in this real world scenario as indicated in figure~\ref{fig:classificationFrocFootball} are slightly worse than in the FlickrLogos-32 benchmark. Nevertheless, training with \ac{LitW} data again improves the results significantly.
 %
 \begin{figure*}%
 \centering%
@@ -413,14 +424,13 @@ In addition to public data, target domain specific experiments are performed on 
 \label{fig:footballSample}
 \end{figure*}%
 %
-
 %Due to copyright reasons this internal dataset cannot be made publicly available.
 %
 \begin{table}[t]
 \centering
 \begingroup	
 \setlength{\tabcolsep}{5pt}
-\caption{SportLogo dataset statistics.}
+\caption{SportsLogos dataset statistics.}
 \label{tab:sportDataStatistics}
 \begin{small}
 \begin{tabular}{l|cccc}
@@ -437,6 +447,14 @@ football-1 & \multirow{3}{*}{train} & {104} & {331} & {3,329} \bigstrut[t]\\
 \end{small}
 \endgroup
 \end{table}
+%
+\begin{figure}%
+\centering%
+\includegraphics[width=\linewidth, trim=0cm 7cm 0cm 0cm, clip]{img/classificationFrocFootball.pdf}%
+\caption{Detection+Classification FROC curve for SportsLogos test set. \map is given in brackets.}%
+\label{fig:classificationFrocFootball}
+\end{figure}%
+%
 
 \section{\uppercase{Conclusions}}
 \label{sec:conclusion}
