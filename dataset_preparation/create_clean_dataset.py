@@ -63,6 +63,9 @@ if __name__ == '__main__':
         os.makedirs(imagesetspath)
 
     i = 0
+    unavailableCounter = 0
+    imageCounter = 0
+    totalRoiCounter = 0
     print('Processing dataset files')
     for r, subdirs, files in os.walk(xmlpath):
         for filename in files:
@@ -71,17 +74,27 @@ if __name__ == '__main__':
                 continue
             if i % 1000 == 0:
                 print('Processed: ' + str(i) + ' images.')
+            imagename = filename.split('.')[0]
+            imgpath = os.path.join(r, imagename + ext)
             filewithpath = os.path.join(r, filename)
-            parent = filewithpath.split('/')[-2]
+            if not os.path.isfile(imgpath):
+                os.remove(filewithpath)
+                unavailableCounter += 1
+                print('Deleted xml for unavailable image file {:s}'.format(imgpath))
+                continue
+            imageCounter += 1
+            try:
+                parent = filewithpath.split('/')[-2]
+            except IndexError:
+                parent = filewithpath.split('\\')[-2]
             parser = xml.etree.ElementTree.XMLParser(encoding="utf-8")
             tree = xml.etree.ElementTree.parse(filewithpath, parser = parser)
             root = tree.getroot()
 
-            imagename = filename.split('.')[0]
-
             imglist += parent + imagename + postfix + '\n'
             roiCounter = 0
             im = cv2.imread(os.path.join(r, imagename + ext))
+            assert im is not None
             imagebrands = []
             intersection = False
             for obj in root.findall('object'):
@@ -523,7 +536,8 @@ if __name__ == '__main__':
                     if not os.path.exists(folder):
                         os.makedirs(folder)
                     cv2.imwrite(os.path.join(folder, roiname + '.jpg'), roi)
-                roiCounter += 1
+                roiCounter += 1                
+                totalRoiCounter += 1
 
             tree.write(filewithpath, encoding="UTF-8")
 
@@ -531,6 +545,10 @@ if __name__ == '__main__':
                 continue
             roiCounter = 0
             for obj in root.findall('object'):
+                                
+                labelBrand = obj.find('name').text.encode('utf-8').lower()
+                if labelBrand == 'copy of amcrest-logo':
+                    continue                
                 
                 brand = imagebrands[roiCounter]
                 
@@ -553,7 +571,11 @@ if __name__ == '__main__':
         with open(os.path.join(imagesetspath, 'litw' + postfix + '.txt'), 'w') as f:
             f.write(imglist)
 
-    with open(os.path.join(outpath, 'brands.txt'), 'w') as f:
+    with open(os.path.join(args.outpath, 'brands.txt'), 'w') as f:
         for brand in set(brandlist):
             f.write(brand + '\n')
 
+    print('Processed rois: {:d}'.format(totalRoiCounter))
+    print('Processed images: {:d}'.format(imageCounter))
+    print('Processed brands: {:d}'.format(len(set(brandlist))))
+    print('Unavailable image files: {:d}'.format(unavailableCounter))
