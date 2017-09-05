@@ -87,6 +87,7 @@ if __name__ == '__main__':
                 parent = filewithpath.split('/')[-2]
             except IndexError:
                 parent = filewithpath.split('\\')[-2]
+            parent = parent.replace(' ', '')
             parser = xml.etree.ElementTree.XMLParser(encoding="utf-8")
             tree = xml.etree.ElementTree.parse(filewithpath, parser = parser)
             root = tree.getroot()
@@ -357,6 +358,7 @@ if __name__ == '__main__':
                 if brand == "coke1":
                     brand = "coke"
                 if brand == "copyofamcrest-symbol":
+                    imagebrands.append('')
                     continue
                 if brand == "corona":
                     brand = "corona-text"
@@ -551,6 +553,9 @@ if __name__ == '__main__':
                     continue                
                 
                 brand = imagebrands[roiCounter]
+                roiCounter += 1
+                if brand == '':
+                    continue
                 
                 bndbox = obj.find('bndbox')
                 x1 = int(bndbox[0].text)
@@ -563,7 +568,6 @@ if __name__ == '__main__':
                 if args.commonformat:                
                     with open(os.path.join(annotationspath, parent + "_" + imagename + postfix + dstext + '.bboxes.txt'), 'a') as annotfile:
                         annotfile.write(str(x1) + ' ' + str(y1) + ' ' + str(x2) + ' ' + str(y2) + ' ' + brand + '\n')
-                roiCounter += 1
             if args.commonformat:
                 copy2(os.path.join(r, imagename + ext), os.path.join(imagespath, parent + '_' + imagename + postfix + dstext))
 
