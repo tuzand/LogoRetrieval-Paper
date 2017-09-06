@@ -1,5 +1,12 @@
 \begin{thebibliography}{}
 
+\bibitem[Arandjelovic et~al., 2016]{arandjelovic2016}
+Arandjelovic, R., Gronat, P., Torii, A., Pajdla, T., and Sivic, J. (2016).
+\newblock {N}et{VLAD}: {CNN} architecture for weakly supervised place
+  recognition.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 5297--5307.
+
 \bibitem[Bansal et~al., 2017]{bansal2017}
 Bansal, A., Castillo, C., Ranjan, R., and Chellappa, R. (2017).
 \newblock {T}he {D}o's and {D}on'ts for {CNN}-based {F}ace {V}erification.
@@ -94,10 +101,17 @@ Hoi, S. C.~H., Wu, X., Liu, H., Wu, Y., Wang, H., Xue, H., and Wu, Q. (2015).
   {R}ecognition with {D}eep {R}egion-based {C}onvolutional {N}etworks.
 \newblock {\em CoRR}, abs/1511.02462.
 
-\bibitem[Huang et~al., 2016]{huang2016}
-Huang, G., Liu, Z., and Weinberger, K.~Q. (2016).
+\bibitem[Huang et~al., 2016a]{huang2016}
+Huang, G., Liu, Z., and Weinberger, K.~Q. (2016a).
 \newblock {D}ensely {C}onnected {C}onvolutional {N}etworks.
 \newblock {\em CoRR}, abs/1608.06993.
+
+\bibitem[Huang et~al., 2016b]{huang2016b}
+Huang, J., Rathod, V., Sun, C., Zhu, M., Korattikara, A., Fathi, A., Fischer,
+  I., Wojna, Z., Song, Y., Guadarrama, S., et~al. (2016b).
+\newblock {S}peed/accuracy trade-offs for modern convolutional object
+  detectors.
+\newblock {\em arXiv preprint arXiv:1611.10012}.
 
 \bibitem[Iandola et~al., 2015]{iandola2015}
 Iandola, F.~N., Shen, A., Gao, P., and Keutzer, K. (2015).
@@ -109,6 +123,13 @@ Iandola, F.~N., Shen, A., Gao, P., and Keutzer, K. (2015).
 Joly, A. and Buisson, O. (2009).
 \newblock {L}ogo retrieval with a contrario visual query expansion.
 \newblock In {\em ACM Multimedia Conference}, pages 581--584.
+
+\bibitem[Kalantidis et~al., 2016]{kalantidis2016}
+Kalantidis, Y., Mellina, C., and Osindero, S. (2016).
+\newblock {C}ross-dimensional weighting for aggregated deep convolutional
+  features.
+\newblock In {\em European Conference on Computer Vision}, pages 685--701.
+  Springer.
 
 \bibitem[Kalantidis et~al., 2011]{kalantidis2011}
 Kalantidis, Y., Pueyo, L., Trevisiol, M., van Zwol, R., and Avrithis, Y.
@@ -130,16 +151,18 @@ Letessier, P., Buisson, O., and Joly, A. (2012).
 \newblock {S}calable mining of small visual objects.
 \newblock In {\em ACM Multimedia Conference}, pages 599--608. ACM.
 
-\bibitem[Liu et~al., 2015]{liu2015}
-Liu, W., Anguelov, D., Erhan, D., Szegedy, C., and Reed, S.~E. (2015).
-\newblock {SSD}: {S}ingle {S}hot {M}ulti{B}ox {D}etector.
-\newblock {\em CoRR}, abs/1512.02325.
+\bibitem[Liu et~al., 2016]{liu2016b}
+Liu, W., Anguelov, D., Erhan, D., Szegedy, C., Reed, S., Fu, C.-Y., and Berg,
+  A.~C. (2016).
+\newblock {SSD}: {S}ingle shot multibox detector.
+\newblock In {\em European Conference on Computer Vision}, pages 21--37.
+  Springer.
 
 \bibitem[Manger, 2012]{manger2012}
 Manger, D. (2012).
 \newblock {L}arge-scale tattoo image retrieval.
-\newblock In {\em Computer and Robot Vision (CRV), 2012 Ninth Conference on},
-  pages 454--459. IEEE.
+\newblock In {\em Canadian Conference on Computer and Robot Vision}, pages
+  454--459. IEEE.
 
 \bibitem[Miller, 1969]{miller1969}
 Miller, H. (1969).
@@ -165,6 +188,11 @@ Redmon, J., Divvala, S.~K., Girshick, R.~B., and Farhadi, A. (2015).
 \newblock {Y}ou {O}nly {L}ook {O}nce: {U}nified, {R}eal-{T}ime {O}bject
   {D}etection.
 \newblock {\em CoRR}, abs/1506.02640.
+
+\bibitem[Redmon and Farhadi, 2016]{redmon2016}
+Redmon, J. and Farhadi, A. (2016).
+\newblock {YOLO}9000: better, faster, stronger.
+\newblock {\em arXiv preprint arXiv:1612.08242}.
 
 \bibitem[Ren et~al., 2015]{ren2015}
 Ren, S., He, K., Girshick, R., and Sun, J. (2015).
@@ -210,6 +238,12 @@ Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D.,
 \newblock {G}oing deeper with convolutions.
 \newblock In {\em Conference on Computer Vision and Pattern Recognition}, pages
   1--9. IEEE.
+
+\bibitem[Torii et~al., 2015]{torii2015}
+Torii, A., Arandjelovic, R., Sivic, J., Okutomi, M., and Pajdla, T. (2015).
+\newblock 24/7 place recognition by view synthesis.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 1808--1817.
 
 \bibitem[Tursun et~al., 2017]{tursun2017}
 Tursun, O., Aker, C., and Kalkan, S. (2017).
