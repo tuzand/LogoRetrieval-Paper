@@ -345,7 +345,7 @@ if __name__ == '__main__':
                 if brand == "coke1":
                     brand = "coke"
                 if brand == "copyofamcrest-symbol":
-                    imagebrands.append('')
+                    root.remove(obj)
                     continue
                 if brand == "corona":
                     brand = "corona-text"
@@ -510,9 +510,6 @@ if __name__ == '__main__':
                 if args.wofl32 and brand in fl32_intersection:
                     intersection = True
 
-                print(roiname)
-                print(brand)
-
                 if args.roi:
                     bndbox = obj.find('bndbox')
                     x1 = int(bndbox[0].text)
@@ -536,8 +533,6 @@ if __name__ == '__main__':
                 
                 brand = imagebrands[roiCounter]
                 roiCounter += 1
-                if brand == '':
-                    continue
                 
                 bndbox = obj.find('bndbox')
                 x1 = int(bndbox[0].text)

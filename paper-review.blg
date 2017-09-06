@@ -1,5 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: paper-review.aux
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: paper-review.aux
 The style file: apalike.bst
 Database file #1: Biblio.bib
 Warning--I didn't find a database entry for "??"
+You've used 38 entries,
+            1935 wiz_defined-function locations,
+            700 strings with 11095 characters,
+and the built_in function-call counts, 17797 in all, are:
+= -- 1758
+> -- 845
+< -- 23
++ -- 292
+- -- 292
+* -- 1430
+:= -- 2990
+add.period$ -- 128
+call.type$ -- 38
+change.case$ -- 334
+chr.to.int$ -- 38
+cite$ -- 38
+duplicate$ -- 733
+empty$ -- 1183
+format.name$ -- 340
+if$ -- 3613
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 38
+newline$ -- 193
+num.names$ -- 116
+pop$ -- 356
+preamble$ -- 1
+purify$ -- 334
+quote$ -- 0
+skip$ -- 563
+stack$ -- 0
+substring$ -- 1063
+swap$ -- 177
+text.length$ -- 15
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 228
+warning$ -- 0
+while$ -- 130
+width$ -- 0
+write$ -- 507
 (There was 1 warning)

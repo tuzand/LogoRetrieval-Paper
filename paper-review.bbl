@@ -42,6 +42,14 @@ Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., and Fei-Fei, L. (2009).
 \newblock In {\em Conference on Computer Vision and Pattern Recognition}, pages
   248--255. IEEE.
 
+\bibitem[Donahue et~al., 2015]{donahue2015}
+Donahue, J., Anne~Hendricks, L., Guadarrama, S., Rohrbach, M., Venugopalan, S.,
+  Saenko, K., and Darrell, T. (2015).
+\newblock {L}ong-term recurrent convolutional networks for visual recognition
+  and description.
+\newblock In {\em Conference on Computer Vision and Pattern Recognition}, pages
+  2625--2634. IEEE.
+
 \bibitem[Eakins et~al., 1998]{eakins1998}
 Eakins, J.~P., Boardman, J.~M., and Graham, M.~E. (1998).
 \newblock {S}imilarity retrieval of trademark images.
@@ -79,6 +87,12 @@ Herrmann, C. and Beyerer, J. (2015).
 \newblock {F}ace {R}etrieval on {L}arge-{S}cale {V}ideo {D}ata.
 \newblock In {\em Canadian Conference on Computer and Robot Vision}, pages
   192--199. IEEE.
+
+\bibitem[Hoi et~al., 2015]{hoi2015}
+Hoi, S. C.~H., Wu, X., Liu, H., Wu, Y., Wang, H., Xue, H., and Wu, Q. (2015).
+\newblock {LOGO}-{N}et: {L}arge-scale {D}eep {L}ogo {D}etection and {B}rand
+  {R}ecognition with {D}eep {R}egion-based {C}onvolutional {N}etworks.
+\newblock {\em CoRR}, abs/1511.02462.
 
 \bibitem[Huang et~al., 2016]{huang2016}
 Huang, G., Liu, Z., and Weinberger, K.~Q. (2016).
