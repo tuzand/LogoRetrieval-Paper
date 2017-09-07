@@ -84,27 +84,27 @@
 
 \begin{document}
 % overall list of remaining stuff
-%TODO figures: commas => dots
-%TODO anonymize review version
-%TODO denote dataset as work in progress and training version as 'v1.0'
+%TODO final proofreading
 
 
 \title{Open Set Logo Detection and Retrieval}
 
-\author{\authorname{Andras T\"uzk\"o\sup{1}, Christian Herrmann\sup{1,2}, Daniel Manger\sup{1}, Dieter Willersinn\sup{1}, J\"urgen Beyerer\sup{1,2}}
-\affiliation{\sup{1} Fraunhofer IOSB, Karlsruhe, Germany}
-\affiliation{\sup{2} Karlsruhe Institute of Technology KIT, Vision and Fusion Lab, Karlsruhe, Germany}
-\email{$\lbrace$andras.tuezkoe$|$christian.herrmann$|$daniel.manger$|$dieter.willersinn$\rbrace$@iosb.fraunhofer.de}
-%\email{\{f\_author, s\_author\}@ips.xyz.edu, t\_author@dc.mu.edu}
-}
+\author{{\large Paper ID 666??}}
+%\author{\authorname{Andras T\"uzk\"o\sup{1}, Christian Herrmann\sup{1,2}, Daniel Manger\sup{1}, Dieter Willersinn\sup{1}, J\"urgen Beyerer\sup{1,2}}
+%\affiliation{\sup{1} Fraunhofer IOSB, Karlsruhe, Germany}
+%\affiliation{\sup{2} Karlsruhe Institute of Technology KIT, Vision and Fusion Lab, Karlsruhe, Germany}
+%\email{$\lbrace$andras.tuezkoe$|$christian.herrmann$|$daniel.manger$|$dieter.willersinn$\rbrace$@iosb.fraunhofer.de}
+%%\email{\{f\_author, s\_author\}@ips.xyz.edu, t\_author@dc.mu.edu}
+%}
 
 \keywords{Logo Detection, Logo Retrieval, Logo Dataset, Trademark Retrieval, Open Set Retrieval, Deep Learning.}
 
 \abstract{
 %%TODO write text here, 70-200 words
-Current logo retrieval research focuses on closed set scenarios. We argue that the logo domain is too large for this strategy and requires an open set approach. To foster research in this direction, the large-scale Logos in the Wild dataset is collected and released to the public.
-Searching for logos in image data has many applications, with judging the effectiveness of advertisement in sports event broadcasts being one example. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a database of images or videos. Currently, common logo retrieval approaches are unsuitable for this task because of their closed world assumption. To address this issue, an open set logo retrieval method is proposed in this work which allows searching for previously unfamiliar logos only by one query sample. A two stage concept with an open set logo detection and comparison is proposed. Both modules are based on task specific \acp{CNN}. The novel Logos in the Wild dataset serves to train the modules with sufficient appropriate in-the-wild data. 
-The proposed method extends the application field in comparison to closed set approaches and significant improvements over baseline methods derived from these state-of-the-art closed set approaches are shown. 
+Current logo retrieval research focuses on closed set scenarios. We argue that the logo domain is too large for this strategy and requires an open set approach. To foster research in this direction, a large-scale logo dataset, called Logos in the Wild, is collected and released to the public.
+A typical open set logo retrieval applications is, for example, judging the effectiveness of advertisement in sports event broadcasts. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a set of images or videos. Currently common logo retrieval approaches are unsuitable for this task because of their closed world assumption. Thus, an open set logo retrieval method is proposed in this work which allows searching for previously unfamiliar logos by a single query sample. A two stage concept with separate logo detection and comparison is proposed where both modules are based on task specific \acp{CNN}. If trained with the Logos in the Wild data, significant performance improvements are observed, especially compared with state-of-the-art closed set approaches.
+%serves to train the modules with sufficient appropriate in-the-wild data. 
+%The proposed method extends the application field in comparison to closed set approaches and significant improvements over baseline methods derived from these state-of-the-art closed set approaches are shown. 
 }
 
 \onecolumn \maketitle \normalsize \vfill
@@ -129,7 +129,7 @@ The proposed method extends the application field in comparison to closed set ap
 A key application is the effectiveness measurement of advertisements. Being able to find all logos that match a query, for example, a logo of a specific company, in images allows to assess the visual frequency and prominence of logos in TV broadcasts. Typically, these broadcasts are sports events where sponsorship and advertisement is very common. 
 This requires a flexible system where the query can easily be defined and switched according to the current task. Especially, also previously unseen logos should be found if one query sample is available.
 %In general, open set retrieval is understood as finding instances of the same class in a database given a single instance from this class which has never been seen before. Usually classes originate from the same category with logos being an example. Thus, prior knowledge about this category can be used to build appropriate retrieval methods. In most applications this prior knowledge is given in shape of training data.
-This requirement excludes basically all current logo retrieval approaches because they make a closed-world assumption where all searched logos are known beforehand. Instead, this paper focuses on open set logo retrieval where only one sample image of a logo is available. 
+This requirement excludes basically all current logo retrieval approaches because they make a closed world assumption where all searched logos are known beforehand. Instead, this paper focuses on open set logo retrieval where only one sample image of a logo is available. 
 
 Consequently, a novel processing strategy for logo retrieval based on a logo detector and a feature extractor is proposed as illustrated in figure~\ref{fig:pipeline}. Similar strategies are known from other open set retrieval tasks, such as face or person retrieval~\cite{bauml2010,herrmann2015b}. Both, the detector and the extractor are task specific \acp{CNN}. For detection, the Faster R-CNN framework~\cite{ren2015} is employed and the extractor is derived from classification networks for the ImageNet challenge~\cite{deng2009}.
 %
@@ -141,11 +141,11 @@ Consequently, a novel processing strategy for logo retrieval based on a logo det
   \label{fig:pipeline}
 \end{figure}
 
-The necessity for open set logo retrieval becomes obvious when having a look at the diversity and amount of existing logos and brands\footnote{The term brand is used in this work as synonym for a single logo class. Thus, a brand might also refer to a product or company name if an according logo exists.}. The METU trademark dataset~\cite{tursun2017} contains, for example, over half a million different logos. Given this number, a closed set approach where all different logos are pretrained within the retrieval system is clearly inappropriate.
+The necessity for open set logo retrieval becomes obvious when having a look at the diversity and amount of existing logos and brands\footnote{The term brand is used in this work as synonym for a single logo class. Thus, a brand might also refer to a product or company name if an according logo exists.}. The METU trademark dataset~\cite{tursun2017} contains, for example, over half a million different brands. Given this number, a closed set approach where all different brands are pre-trained within the retrieval system is clearly inappropriate.
 This is why our proposed feature extractor generates a discriminative logo descriptor, which generalizes to unseen logos, instead of a mere classification between previously known brands. The well-known high discriminative capabilities of \acp{CNN} allow to construct such a feature extractor.
 
 One challenge for training a general purpose logo detector lies in appropriate training data. Many logo or trademark dataset~\cite{eakins1998,hoi2015,tursun2017} only contain the original logo graphic but no in-the-wild occurrences of these logos which are required for the target application. The need for annotated logo bounding boxes in the images limits the number of suitable datasets. Existing logo datasets~\cite{joly2009,kalantidis2011,romberg2011,letessier2012,bianco2015,su2016,bianco2017} with available bounding boxes are often restricted to a very small number of brands and mostly high quality images. Especially, occlusions, blur and variations within a logo type are only partially covered.
-To address these shortcomings, a novel in-the-wild logo dataset is collected and made publicly available~\footnote{\url{url://to.come}}.
+To address these shortcomings, the novel Logos in the Wild dataset is collected and made publicly available~\footnote{\url{url://to.come}}.
 
 The contributions of this work are threefold:
 \begin{itemize}
@@ -163,18 +163,18 @@ The contributions of this work are threefold:
 
 \section{\uppercase{Related Work}}
 %\noindent- Logo Retrieval (\xie closed set approaches) \\
-\noindent Current logo retrieval strategies are generally solving a closed set detection and classification problem. Eggert et.al. \cite{eggert2015} utilized \acp{CNN} to extract features from logos and determined their brand by classification with a set of \acp{SVM}. Fast R-CNN \cite{girshick2015} was used for the first time to retrieve logos from images by Iandola et al. \cite{iandola2015} and achieved superior results on the FlickrLogos-32 dataset \cite{romberg2011}. Furthermore, R-CNN, Fast R-CNN and Faster R-CNN were used in \cite{bao2016}, \cite{oliveira2016}, \cite{qi2017}. All these works use the same brands for training as for validation.
+\noindent Current logo retrieval strategies are generally solving a closed set detection and classification problem. Eggert et.al. \cite{eggert2015} utilized \acp{CNN} to extract features from logos and determined their brand by classification with a set of \acp{SVM}. Fast R-CNN \cite{girshick2015} was used for the first time to retrieve logos from images by Iandola et al. \cite{iandola2015} and achieved superior results on the FlickrLogos-32 dataset \cite{romberg2011}. Furthermore, R-CNN, Fast R-CNN and Faster R-CNN were used in \cite{bao2016,oliveira2016,qi2017}. As closed set methods, all of them use the same brands for training as for validation.
 
 %- Other retrieval applications (\xeg face, person)
 \subsection{Open Set Retrieval}
-Retrieval scenarios in other domains are basically always considered open set, \xie samples from the currently searched class have never been seen before.
-This is the case for general purpose image retrieval~\cite{sivic2003}, tattoo retrieval~\cite{manger2012} or for person retrieval in image or video data where face or appearance-based methods are common~\cite{bauml2010,weber2011,herrmann2015b}. The reason is that these in-the-wild scenarios offer usually a too large and impossible to capture variety of object classes. In case of persons, a class would be a person identity with billions of persons existing. Consequently, methods have to be designed and trained on a limited set of classes and have to generalize to previously unseen classes. We argue that this approach is also required for logo retrieval because of the vast amount of existing brands and according logos which cannot be captured in advance.
+Retrieval scenarios in other domains are basically always considered open set, \xie,~samples from the currently searched class have never been seen before.
+This is the case for general purpose image retrieval~\cite{sivic2003}, tattoo retrieval~\cite{manger2012} or for person retrieval in image or video data where face or appearance-based methods are common~\cite{bauml2010,weber2011,herrmann2015b}. The reason is that these in-the-wild scenarios offer usually a too large and impossible to capture variety of object classes. In case of persons, a class would be a person identity resulting in a cardinality of billions. Consequently, methods are designed and trained on a limited set of classes and have to generalize to previously unseen classes. We argue that this approach is also required for logo retrieval because of the vast amount of existing brands and according logos which cannot be captured in advance.
 Typically, approaches targeting open set scenarios consist of an object detector and a feature extractor~\cite{zheng2016b}. The detector localizes the objects of interest and the feature extractor creates a discriminative descriptor regarding the target classes which can than be compared to query samples.
 
 % Detector Frameworks: Faster R-CNN~\cite{ren2015}, SSD~\cite{liu2016b}, Yolo~\cite{redmon2016}, ...
 \subsection{Object Detector Frameworks}
 Early detectors applied hand-crafted features, such as Haar-like features, combined with a classifier to detect objects in images \cite{viola2004}. 
-Nowadays, deep learning methods surpass the traditional methods by a significant margin. In addition, they allow a certain level of object classification within the detector which is mostly used to simultaneously detect different object categories \cite{sermanet2013}. 
+Nowadays, deep learning methods surpass the traditional methods by a significant margin. In addition, they allow a certain level of object classification within the detector which is mostly used to simultaneously detect different object categories, such as  persons and cars \cite{sermanet2013}. 
 %The OverFeat framework uses sliding windows on multiple scales of the image and combines the \ac{CNN} features to detect objects and classify them. 
 The YOLO detector \cite{redmon2015} introduces an end-to-end network for object detection and classification based on bounding box regressors for object localization. This concept is similarly applied by the Single Shot MultiBox Detector (SSD) \cite{liu2016b}. 
 Faster Region-Based Convolutional Neural Network (R-CNN) \cite{ren2015} introduces a \ac{RPN} to detect object candidates in the feature maps and classifies the candidate regions by a fully connected network. 
@@ -195,52 +195,9 @@ The inception architecture~\cite{szegedy2015} proposed a multi-path network modu
 The recent DenseNet \cite{huang2016} builds on a ResNet-like architecture and introduces ``dense units''. The output of these units is connected with every subsequent dense unit's input by concatenation. This results in a much denser network than a conventional feed-forward network.
 
 
-\section{\uppercase{Logo Detection}}
-%\noindent- class agnostic detector \\
-%- different base networks: VGG-CNN-M, VGG16
-\noindent The current state-of-the-art approaches for scene retrieval create a global feature of the input image. This is achieved by either inferring from the complete image or by searching for key regions and then extracting features from the located regions, which are finally fused into a global feature \cite{torii2015,arandjelovic2016,kalantidis2016}. For logo retrieval, extraction of a global feature is counterproductive because it lacks discriminative power to retrieve small objects. Additionally, global features usually include no information about the size and location of the objects which is also an important factor for logo retrieval applications.
-
-Therefore, we choose a two-stage approach consisting of logo detection and logo classification as figure~\ref{fig:openClosedSet} illustrates for the open set case. First, the logos have to be detected in the input image. 
-Since currently almost only Faster R-CNNs~\cite{ren2015} are used in the context of logo retrieval, we follow this choice for better comparability and because it offers a straight forward baseline method.
-Other state-of-the-art detector options, such as SSD \cite{liu2016b} or YOLO \cite{redmon2016}, potentially offer a faster detection at the cost of detection performance \cite{huang2016b}.
-
-Detection networks trained for the currently common closed set assumption are unsuitable to detect logos in an open set manner. By considering the output brand probability distribution, no derivation about occurrences of other brands are possible. Therefore, the task raises the need for a generic logo detector, which is able to detect all logo brands in general.
-
-\subsubsection*{Baseline}
-\vspace*{-2.5mm}
-Faster R-CNN consists of two stages, the first being a \ac{RPN} to detect object candidates in the feature maps and the second being classifiers for the candidate regions. While the second stage specifies on the trained brands, the \ac{RPN} will generate candidates that vaguely resemble any of the brands which is the case for many other logos. Thus, it provides an indicator whether a region of the image is a logo or not. The trained \ac{RPN} and the underlying feature extractor network are extracted and employed as a baseline open set logo detector. 
-
-\subsubsection*{Brand Agnostic}
-\vspace*{-2.5mm}
-The \ac{RPN} strategy is by no means optimal because it obviously has a bias towards the pre-trained brands and also includes a certain amount of false positives.
-Therefore, another option to detect logos is suggested which we call the brand agnostic Faster R-CNN. It is trained with only two classes: background and logo. We argue that this solution which merges all brands into a single class yields better performance than the \ac{RPN} detector because of two reasons. 
-First, in the second stage fully connected layers preceding the output layer serve as strong classifiers which are able to eliminate false positives.
-Second, the bounding box regression layers better adapt the bounding boxes to the logos resulting in a more precise localization. 
-%Third, the combination of \ac{RPN} and the fully connected classifiers shape a cascade of detectors similarly as in \cite{viola2004}. The \ac{RPN} counts for a weaker classifier, which is faster and allows more false positives. In combination, it is expected to have a lower false positive rate.
-
-% Logo comparison and classification can be included in the Faster R-CNN framework at the cost of generalization to unseen classes. We argue that specialization to a few dozen specific brands does not cover the complexity and breadth of the domain.
-
-\section{\uppercase{Logo Comparison}}
-%TODO write text here
-\noindent After a logo is detected in an image, a correspondence from the query set should be searched. In order to retrieve as much objects from the images as possible, the detectors should work with a high recall. Although, for difficult tasks like open-set logo detection, high recall values induce usually a lot of false positive possible object locations. These examples should be eliminated by appropriate classifier. However, in case of image retrieval the goal is not direct classification, but rather feature extraction of a found region. Thus, the features of the logos of all the query images and the search set should be collected. The retrieved feature vectors are then normalized and the similarities of them are calculated with cosine similarity.
-For baseline method, a Faster R-CNN is utilized, trained as usual. During inference, instead of detecting and classifying directly from the class probabilities, first the logos will be detected by processing the output of the \ac{RPN}. Then, the class scores are used as discriminative feature for the underlying region. The feature vector of the query images are extracted from the complete image, since the logos fill the majority of these images.
-Donahue et al. proposed \cite{donahue2015}, that convolutional networks can produce excellent descriptors of the input image, regardless of the absence of fine-tuning to the specific context of the image. For this purpose, a network is pretrained on very large datasets, after which it can be deployed for a broad set of computer vision problems. In our case, the networks were additionally fine-tuned with different amount of logo images.
-The proposed logo retrieval system consists of a class agnostic logo detector and a feature extractor network. This setup is advantageous for the quality of the extracted features, because the complete network is only focused on a specific region.
-
-
-\section{\uppercase{Logo Dataset}}
-%\noindent- freely collected from web \\
-%- name suggestions: 'Logos in the Wild', 'IOSB Logos' \\
-%- how was the dataset collected? \\
-%- database statistics \\
-%- what is different compared with other datasets? \\
-%- what are the benefits? \\
-%%TODO Christian
-\noindent To train the proposed logo detector and feature extractor, a novel logo dataset is collected to supplement publicly available logo datasets. A comparison to other public in-the-wild datasets with annotated bounding boxes is given in table~\ref{tab:logoDatasets}.
-%
 \begin{table*}[t]
 \centering
-\caption{Publicly available in-the-wild logo datasets in comparison with the novel dataset.}
+\caption{Publicly available in-the-wild logo datasets in comparison with the novel Logos in the Wild dataset.}
 \label{tab:logoDatasets}
 \begin{small}
 \begin{tabular}{cl|ccc}
@@ -261,7 +218,50 @@ The proposed logo retrieval system consists of a class agnostic logo detector an
 \end{small}
 \end{table*}
 %
-The goal is an in-the-wild logo dataset with pictures including logos instead of the pure original logo graphics. In addition, images where the logo does not represent the central dominant part of the image are preferred. See figure~\ref{fig:logoSamples} for a few examples of the collected data.
+\section{\uppercase{Logo Detection}}
+%\noindent- class agnostic detector \\
+%- different base networks: VGG-CNN-M, VGG16
+\noindent The current state-of-the-art approaches for scene retrieval create a global feature of the input image. This is achieved by either inferring from the complete image or by searching for key regions and then extracting features from the located regions, which are finally fused into a global feature \cite{torii2015,arandjelovic2016,kalantidis2016}. For logo retrieval, extraction of a global feature is counterproductive because it lacks discriminative power to retrieve small objects. Additionally, global features usually include no information about the size and location of the objects which is also an important factor for logo retrieval applications.
+
+Therefore, we choose a two-stage approach consisting of logo detection and logo classification as figure~\ref{fig:openClosedSet} illustrates for the open set case. First, the logos have to be detected in the input image. 
+Since currently almost only Faster R-CNNs~\cite{ren2015} are used in the context of logo retrieval, we follow this choice for better comparability and because it offers a straight forward baseline method.
+Other state-of-the-art detector options, such as SSD \cite{liu2016b} or YOLO \cite{redmon2016}, potentially offer a faster detection at the cost of detection performance \cite{huang2016b}.
+
+Detection networks trained for the currently common closed set assumption are unsuitable to detect logos in an open set manner. By considering the output brand probability distribution, no derivation about occurrences of other brands are possible. Therefore, the task raises the need for a generic logo detector, which is able to detect all logo brands in general.
+
+\subsubsection*{Baseline}
+\vspace*{-2.5mm}
+Faster R-CNN consists of two stages, the first being an \ac{RPN} to detect object candidates in the feature maps and the second being classifiers for the candidate regions. While the second stage sharply classifies the trained brands, the \ac{RPN} will generate candidates that vaguely resemble any of the brands which is the case for many other logos. Thus, it provides an indicator whether a region of the image is a logo or not. The trained \ac{RPN} and the underlying feature extractor network are isolated and employed as a baseline open set logo detector. 
+
+\subsubsection*{Brand Agnostic}
+\vspace*{-2.5mm}
+The \ac{RPN} strategy is by no means optimal because it obviously has a bias towards the pre-trained brands and also generates a certain amount of false positives.
+Therefore, another option to detect logos is suggested which we call the brand agnostic Faster R-CNN. It is trained with only two classes: background and logo. We argue that this solution which merges all brands into a single class yields better performance than the \ac{RPN} detector because of two reasons. 
+First, in the second stage, fully connected layers preceding the output layer serve as strong classifiers which are able to eliminate false positives.
+Second, these layers also serve as stronger bounding box regressors improving the localization precision of the logos.
+
+
+\section{\uppercase{Logo Comparison}}
+\noindent After logos are detected, the correspondences to the query sample have to be searched. 
+For logo retrieval, features are extracted from the detected logos for comparison with the query sample. Thus, the logo feature vectors for the query image and the ones for the database are collected and normalized. Pair-wise comparison is then performed by cosine similarity.
+
+In order to retrieve as many logos from the images as possible, the detector has to operate at a high recall. However, for difficult tasks, such as open set logo detection, high recall values induce a certain amount of false positive detections. The feature extraction step thus has to be robust and tolerant to these false positives. 
+%These have to be eliminated by an appropriate subsequent classifier. 
+%
+%As baseline feature extraction method, a standard Faster R-CNN is utilized, trained  with the training set classes. 
+%During inference, instead of detecting and classifying directly from the class probabilities, first the logos will be detected by processing the output of the \ac{RPN}. Then, the class scores are used as discriminative feature for the underlying region.
+%
+%The feature vector of the query images are extracted from the full query image since they are assumed to be either manually picked, or previously detected and cropped by a logo detector.
+%
+
+Donahue et al. suggested that \acp{CNN} can produce excellent descriptors of an input image  even in the absence of fine-tuning to the specific domain of the image \cite{donahue2015}. 
+This motivates to apply a network pre-trained on a very large dataset as feature extractor. Namely, several state-of-the-art \acp{CNN} trained on the ImageNet dataset \cite{deng2009} are explored for this task. To adjust the network to the logo domain and the false positive removal, the networks are fine-tuned on logo detections. The final network layer is extracted as logo feature in all cases.
+
+Altogether, the proposed logo retrieval system consists of a class agnostic logo detector and a feature extractor network. This setup is advantageous for the quality of the extracted logo features because the extractor network has only to focus on a specific region.
+This is an improvement compared to including both logo detection and comparison in the regular Faster R-CNN framework which lacks generalization to unseen classes. We argue that the specialization in the regular Faster R-CNN to the limited number of specific brands in the training set does not cover the complexity and breadth of the logo domain. This is why a separate and more elaborate feature extractor is proposed even though this might appear like a less elegant solution.
+
+
+
 %
 \setlength{\frameSize}{3.7cm}
 \begin{figure*}%
@@ -282,14 +282,7 @@ The goal is an in-the-wild logo dataset with pictures including logos instead of
 \label{fig:logoSamples}
 \end{figure*}%
 %
-Following the general suggestions from \cite{bansal2017}, we target for a dataset containing significantly more brands instead of collecting additional image samples for the already covered brands. This is the exact opposite strategy than performed by the Logos-32plus dataset.
-Starting with a list of well-known brands and companies, an image web search is performed. Because most other web collected logo datasets mainly rely on Flickr, we opt for Google image search to broaden the domain. Brand or company names are searched directly or in combination with a predefined set of search terms, \xeg, `advertisement', `building', `poster' or `store'. 
-
-For each search result, the first $N$ images are downloaded, where $N$ is determined by a quick manual inspection to avoid collecting too much garbage. 
-%All search results are quickly inspected manually if a sufficient amount of suitable in-the-wild logo images is included and if so the first $N$ images are downloaded. 
-After removing duplicates, this results in 4~to 608~images per searched brand. These images are then one-by-one manually annotated with logo bounding boxes or sorted out if unsuitable.
-Images are considered unsuitable if they contain no logos or fail the in-the-wild requirement, which is the case for the original raw logo graphics. Taken pictures of such logos and advertisement posters on the other hand are desired to be in the dataset. 
-Annotations distinguish between textual and graphical logos as well as different logos from one company as exemplary indicated in figure~\ref{fig:annotatedSample}.
+\section{\uppercase{Logo Dataset}}
 %
 \begin{figure}%
 \centering%
@@ -298,7 +291,20 @@ Annotations distinguish between textual and graphical logos as well as different
 \label{fig:annotatedSample}
 \end{figure}%
 %
-Altogether, the current version of the dataset, which is used in this paper, contains 872 brands with 32,850 annotated bounding boxes. 238 brands occur at least 10 times. An image may contain several logos with the maximum being 118 logos in one image. The complete distributions are shown in figures~\ref{fig:brandDistribution} and~\ref{fig:logoDistribution}. 
+\noindent To train the proposed logo detector and feature extractor, a novel logo dataset is collected to supplement publicly available logo datasets. A comparison to other public in-the-wild datasets with annotated bounding boxes is given in table~\ref{tab:logoDatasets}.
+The goal is an in-the-wild logo dataset with images including logos instead of the raw original logo graphics. In addition, images where the logo represents only a minor part of the image are preferred. See figure~\ref{fig:logoSamples} for a few examples of the collected data.
+Following the general suggestions from \cite{bansal2017}, we target for a dataset containing significantly more brands instead of collecting additional image samples for the already covered brands. This is the exact opposite strategy than performed by the Logos-32plus dataset.
+Starting with a list of well-known brands and companies, an image web search is performed. Because most other web collected logo datasets mainly rely on Flickr, we opt for Google image search to broaden the domain. Brand or company names are searched directly or in combination with a predefined set of search terms, \xeg, `advertisement', `building', `poster' or `store'. 
+
+For each search result, the first $N$ images are downloaded, where $N$ is determined by a quick manual inspection to avoid collecting too much garbage. 
+%All search results are quickly inspected manually if a sufficient amount of suitable in-the-wild logo images is included and if so the first $N$ images are downloaded. 
+After removing duplicates, this results in 4~to 608~images per searched brand. These images are then one-by-one manually annotated with logo bounding boxes or sorted out if unsuitable.
+Images are considered unsuitable if they contain no logos or fail the in-the-wild requirement, which is the case for the original raw logo graphics. Taken pictures of such logos and advertisement posters on the other hand are desired to be in the dataset. 
+Annotations distinguish between textual and graphical logos as well as different logos from one company as exemplary indicated in figure~\ref{fig:annotatedSample}.
+Altogether, the current version of the dataset, contains 872 brands with 32,850 annotated bounding boxes. 238 brands occur at least 10 times. An image may contain several logos with the maximum being 118 logos in one image. The full distributions are shown in figures~\ref{fig:brandDistribution} and~\ref{fig:logoDistribution}. 
+
+The collected Logos in the Wild dataset exceeds the size of all related logo datasets as shown in table~\ref{tab:logoDatasets}. Even the union of all related logo datasets contains significantly less brands and RoIs which makes Logos in the Wild a valuable large-scale dataset.
+As the annotation is still an ongoing process, different dataset revisions will be tagged by version numbers for future reference. Note that the numbers in table~\ref{tab:logoDatasets} are the current state (v2.0) whereas detector and feature extractor training used a slightly earlier version with numbers given in table~\ref{tab:trainTestStatistics} (v1.0) because of the required time for training and evaluation.
 %
 \begin{figure}%
 \centering%
@@ -313,9 +319,6 @@ Altogether, the current version of the dataset, which is used in this paper, con
 \caption{Distribution of number of RoIs per image.}%
 \label{fig:logoDistribution}
 \end{figure}%
-
-The collected Logos in the Wild dataset exceeds the size of all related logo datasets as shown in table~\ref{tab:logoDatasets}. Even the union of all related logo datasets contains significantly less brands and RoIs which makes Logos in the Wild a valuable large-scale dataset.
-The annotation is still an ongoing process and further larger versions of the dataset are expected to be published in the future (??).
 %
 %Potential uses: 
 %In this work, the dataset is mainly used for training purposes
@@ -346,10 +349,10 @@ The training set consists of two parts. The union of all public logo datasets as
 \begin{tabular}{cl|cc}
 \textbf{phase} & \multicolumn{1}{c|}{\textbf{data}} & \multicolumn{1}{c}{\textbf{brands}} & \multicolumn{1}{c}{\textbf{RoIs}} \bigstrut[b]\\
 \hline
-\multirow{2}[2]{*}{train} & public & 47    & 3.113 \bigstrut[t]\\
-      & public+\ac{LitW} & 632   & 18.960 \bigstrut[b]\\
+\multirow{2}[2]{*}{train} & public & 47    & 3,113 \bigstrut[t]\\
+      & public+\ac{LitW} v1.0 & 632   & 18,960 \bigstrut[b]\\
 \hline
-test  & FlickrLogos-32 test & 32    & 1.602 \bigstrut[t]\\
+test  & FlickrLogos-32 test & 32    & 1,602 \bigstrut[t]\\
 \end{tabular}%
 \end{small}
 \endgroup
@@ -358,23 +361,12 @@ test  & FlickrLogos-32 test & 32    & 1.602 \bigstrut[t]\\
 In the first step, the detector stage alone is assessed. Then, the combination of detection and comparison for logo retrieval is evaluated. 
 Detection and matching performance is measured by the \ac{FROC} curve~\cite{miller1969} which denotes the detection or detection and identification rate versus the number of false detections.
 
-In all cases, the \acp{CNN} are trained until convergence. Due to the diversity of applied networks and differing dataset sizes, training settings are numerous and optimized in each case with the validation data. Convergence occurs after 200 to 8,000 training iterations with a batch-size between 1 for the Faster R-CNN detector, 32 for the VGG16, 18 for the ResNet101 and 7 for the DenseNet161 training, due to GPU memory limitation.
-%Training duration depends on the architecture as well as the amount of training data.
-%TODO write text here
+In all cases, the \acp{CNN} are trained until convergence. Due to the diversity of applied networks and differing dataset sizes, training settings are numerous and optimized in each case with the validation data. Convergence occurs after 200 to 8,000 training iterations with a varying batch-size of 1 for the Faster R-CNN detector, 7 for the DenseNet161, 18 for the ResNet101 and 32 for the VGG16 training due to GPU memory limitation.
 
 \subsection{Detection}
-%- train 3 different detectors: multi-class Faster R-CNN (maybe \ac{RPN}), single-class Faster R-CNN, single-class Faster R-CNN + own logos\\
-%- test on FlickrLogos-32 => FROC plot\\
-%- test first two detectors on own logo dataset => FROC plot\\
-%- Example Detections\\
-%%TODO write text here
 As baseline, the state-of-the-art closed set logo retrieval method from~\cite{su2016} based on Faster R-CNN is employed and trained on the public portion of the training data.
 It is naively adapted to open set detection by using the \ac{RPN} scores as detections. This skips the closed set classification part of the network which is trained on different logos than should be detected on the test set.
-%Because of the closed set training strategy, only brands occurring in the training set are the final outcome of this detector. 
-%Adaptation to open set detection of previously unseen logos is achieved by using the RPN scores before classification as detections.
-%Because of the strict separation of train and test brands, and the closed set training strategy
-%the RPN scores serve as detections.
-The proposed logo detector is first trained on the same public data for comparison. All Faster R-CNN detectors are based on VGG16 network.
+The proposed brand agnostic logo detector is first trained on the same public data for comparison. All Faster R-CNN detectors are based on the VGG16 network.
 The results in figure~\ref{fig:detectionFroc} indicate that the proposed brand agnostic strategy is superior by a significant margin. 
 %
 \begin{figure}%
@@ -385,26 +377,15 @@ The results in figure~\ref{fig:detectionFroc} indicate that the proposed brand a
 \end{figure}%
 %
 
-Further improvement is achieved by combining the public training data with the novel data.
+Further improvement is achieved by combining the public training data with the novel logo data.
 Adding \ac{LitW} as additional training data improves the detection results with its large variety of additional training brands. 
 This confirms findings from other domains, such as face analysis, where wider training datasets are preferred over deeper ones~\cite{bansal2017}. This means it is better to train on additional different brands than on additional samples per brand.
 As direction for future dataset collection, this suggests to focus on additional brands.
 
 \subsection{Retrieval}
-%- train 4 to 6 additional networks: feature extraction network for public and public+own training data --- use VGG16, ResNet50, DenseNet as base network (either for both training sets or only for the public+own)
-%- describe repeated query logo strategy => 10 sample => mean + std
-%- results on FlickrLogos-32 => FROC plot\\
-%- results on own sports data => FROC plot\\
-%%TODO write text here
-%
-For the retrieval experiments, the Faster R-CNN based state-of-the-art closed set logo retrieval method from the previous section is again used as baseline. Now the full network is applied and the logo class probabilities are interpreted as feature vector which is then used to match previously unseen logos.
-For the proposed open set strategy, the best logo detection network from the previous section is used in all cases. Detected logos are described by the classification network's output feature. Descriptor matching is performed in all cases with cosine similarity. Three different state-of-the-art classification architectures, namely VGG16~\cite{simonyan2014}, ResNet101~\cite{he2015} and DenseNet161~\cite{huang2016}, serve as base for the logo classification stage. All networks are pretrained on ImageNet and afterwards fine-tuned either on the public logo train set or the combination of the public and the \ac{LitW} train data.
+For the retrieval experiments, the Faster R-CNN based state-of-the-art closed set logo retrieval method from the previous section serves again as baseline. Now the full network is applied and the logo class probabilities of the second stage are interpreted as feature vector which is then used to match previously unseen logos.
+For the proposed open set strategy, the best logo detection network from the previous section is used in all cases. Detected logos are described by the feature extraction network outputs where three different state-of-the-art classification architectures, namely VGG16~\cite{simonyan2014}, ResNet101~\cite{he2015} and DenseNet161~\cite{huang2016}, serve as base networks. All networks are pretrained on ImageNet and afterwards fine-tuned either on the public logo train set or the combination of the public and the \ac{LitW} train data.
 
-\subsubsection*{FlickrLogos-32}
-\vspace*{-2.5mm}
-In 10 iterations, each of the 10 FlickrLogos-32 train samples for each brand serves as query sample. This allows to assess the statistical significance of results similar to a 10-fold-cross-validation strategy. Figure~\ref{fig:classificationFroc} shows the FROC results for the trained networks including indicators for the standard deviation of the measurements. The detection identification rate denotes the amount of ground truth logos which are correctly detected and are assigned the correct brand.
-While the baseline method is only able to find a minor amount of the logos, our best performing approach is able to correctly retrieve 25 percent of the logos if tolerating only one false alarm every 100 images.
-As expected, the more recent network architectures provide better results. Also, including the \ac{LitW} data in the training yields a significant boost in performance. Specifically, the larger training dataset has a larger impact on the performance than a better network architecture. 
 %
 \begin{figure}%
 \centering%
@@ -413,7 +394,11 @@ As expected, the more recent network architectures provide better results. Also,
 \label{fig:classificationFroc}
 \end{figure}%
 %
-%As far as we are aware, this is the first experiment with open set logo retrieval on 
+\subsubsection*{FlickrLogos-32}
+\vspace*{-2.5mm}
+In 10 iterations, each of the 10 FlickrLogos-32 train samples for each brand serves as query sample. This allows to assess the statistical significance of results similar to a 10-fold-cross-validation strategy. Figure~\ref{fig:classificationFroc} shows the FROC results for the trained networks including indicators for the standard deviation of the measurements. The detection identification rate denotes the amount of ground truth logos which are correctly detected and are assigned the correct brand.
+While the baseline method is only able to find a minor amount of the logos, our best performing approach is able to correctly retrieve 25 percent of the logos if tolerating only one false alarm every 100 images.
+As expected, the more recent network architectures provide better results. Also, including the \ac{LitW} data in the training yields a significant boost in performance. Specifically, the larger training dataset has a larger impact on the performance than a better network architecture. 
 Table~\ref{tab:mapFlickr} compares our open set results with closed set results from the literature in terms of the mean average precision (\map). 
 %
 \begin{table}[t]
@@ -444,11 +429,11 @@ Table~\ref{tab:mapFlickr} compares our open set results with closed set results 
 \end{small}
 \endgroup
 \end{table}
-We achieve more than half of the closed set performance in terms of \map~with only one sample for a brand at test time instead of dozens or hundreds of brand samples at training time. In addition, our approach is not limited to the 32 FlickrLogos brands but generalizes with a similar performance to further brands. In contrast, the closed-set approaches hardly generalize as is shown by the baseline open set method. This is the second best closed set approach only retrained on out-of-test brands.
+We achieve more than half of the closed set performance in terms of \map~with only one sample for a brand at test time instead of dozens or hundreds of brand samples at training time. In addition, our approach is not limited to the 32 FlickrLogos brands but generalizes with a similar performance to further brands. In contrast, the closed set approaches hardly generalize as is shown by the baseline open set method. This is the second best closed set approach only retrained on out-of-test brands.
 
 \subsubsection*{SportsLogos}
 \vspace*{-2.5mm}
-In addition to public data, target domain specific experiments are performed on TV broadcasts of sports events. In total, this SportsLogos test set includes 298 annotated frames with 2,348 logos of 40 brands. In comparison to public logo datasets, the logos are usually significantly smaller in these cases and cover only a tiny fraction of the image area as illustrated in figure~\ref{fig:footballSample}. Besides perimeter advertising, logos on clothing or equipment of the athletes and TV station or program overlays are the most occurring logo types.
+In addition to public data, target domain specific experiments are performed on TV broadcasts of sports events. In total, this SportsLogos test set includes 298 annotated frames with 2,348 logos of 40 brands. In comparison to public logo datasets, the logos are usually significantly smaller and cover only a tiny fraction of the image area as illustrated in figure~\ref{fig:footballSample}. Besides perimeter advertising, logos on clothing or equipment of the athletes and TV station or program overlays are the most occurring logo types.
 Overall, the results in this application scenario are slightly worse than in the FlickrLogos-32 benchmark with a drop in \map~from 0.464 to 0.354 for the best performing method, as indicated in figure~\ref{fig:classificationFrocFootball}. The baseline approach takes the largest performance hit showing that closed set approaches not only generalize badly to unseen logos but also to novel domains. In contrast, the proposed open set strategy shows a relatively stable cross-domain performance. Training with \ac{LitW} data again improves the results significantly.
 %
 \begin{figure*}%
@@ -457,30 +442,11 @@ Overall, the results in this application scenario are slightly worse than in the
 \caption{Example football scene with small logos in the perimeter advertising.}%
 \label{fig:footballSample}
 \end{figure*}%
-%
-%Due to copyright reasons this internal dataset cannot be made publicly available.
-%
-%\begin{table}[t]
-%\centering
-%\begingroup	
-%\setlength{\tabcolsep}{5pt}
-%\caption{SportsLogos dataset statistics.}
-%\label{tab:sportDataStatistics}
-%\begin{small}
-%\begin{tabular}{l|cccc}
-% & \textbf{phase} & \textbf{brands} & \sizebox{1.0cm}{\textbf{logo images}} & \textbf{RoIs} \bigstrut[b]\\
-%\hline
-%football-1 & \multirow{3}{*}{train} & {104} & {331} & {3,329} \bigstrut[t]\\
-%{ski} & & {27} & {179} & {701} \\
-%{ice hockey} & & {19} & {410} & {3,920} \bigstrut[b]\\
-%\hline
-%{football-2} & test & 40 & 298 & 2,348 \bigstrut\\
-%%\hline
-%%{total} & & {143 (union)} & {1,218} & {10,298} \bigstrut[t]\\
-%\end{tabular}
-%\end{small}
-%\endgroup
-%\end{table}
+
+\section{\uppercase{Conclusions}}
+\label{sec:conclusion}
+\noindent The limits of closed set logo retrieval approaches motivate the proposed open set approach. By this, generalization to unseen logos and novel domains is improved significantly in comparison to a naive extension of closed set approaches to open set configurations. 
+Due to the large logo variety, open set logo retrieval is still a challenging task where trained methods benefit significantly from larger datasets. The lack of sufficient data is addressed by introduction of the large-scale Logos in the Wild dataset. Despite being bigger than all other in-the-wild logo datasets combined, dataset sizes should probably be scaled even further in the future. Adding the Logos in the Wild data in the training improves the mean average precision from 0.368 to 0.464 for open set logo retrieval on FlickrLogos-32.
 %
 \begin{figure}%
 \centering%
@@ -489,17 +455,6 @@ Overall, the results in this application scenario are slightly worse than in the
 \label{fig:classificationFrocFootball}
 \end{figure}%
 %
-
-\section{\uppercase{Conclusions}}
-\label{sec:conclusion}
-\noindent The limits of closed set logo retrieval approaches motivate the proposed open set approach. By this, generalization to unseen logos and novel domains is improved significantly in comparison to a naive extension of closed set approaches to open set configurations. 
-Due to the large logo variety, open set logo retrieval is still a challenging task where trained methods benefit significantly from larger datasets. The lack of sufficient data is addressed by introduction of the large-scale Logos in the Wild dataset. Despite being bigger than all other in-the-wild logo datasets combined, dataset sizes should probably be scaled even further in the future. Adding the Logos in the Wild data to train improved detection and comparison \acp{CNN} improves the mean average precision from 0.368 to 0.464 for open set logo retrieval on FlickrLogos-32.
-
-
-%\noindent- significant improvement over baseline
-%- enables novel applications
-%- novel large scale in-the-wild logo dataset
-%%TODO write text here
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
