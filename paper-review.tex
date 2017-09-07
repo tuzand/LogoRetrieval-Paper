@@ -169,7 +169,7 @@ The contributions of this work are threefold:
 \subsection{Open Set Retrieval}
 Retrieval scenarios in other domains are basically always considered open set, \xie samples from the currently searched class have never been seen before.
 This is the case for general purpose image retrieval~\cite{sivic2003}, tattoo retrieval~\cite{manger2012} or for person retrieval in image or video data where face or appearance-based methods are common~\cite{bauml2010,weber2011,herrmann2015b}. The reason is that these in-the-wild scenarios offer usually a too large and impossible to capture variety of object classes. In case of persons, a class would be a person identity with billions of persons existing. Consequently, methods have to be designed and trained on a limited set of classes and have to generalize to previously unseen classes. We argue that this approach is also required for logo retrieval because of the vast amount of existing brands and according logos which cannot be captured in advance.
-Typically, approaches targeting open set scenarios consist of an object detector and a feature extractor~\cite{??}. The detector localizes the objects of interest and the feature extractor creates a discriminative descriptor regarding the target classes which can than be compared to query samples.
+Typically, approaches targeting open set scenarios consist of an object detector and a feature extractor~\cite{zheng2016b}. The detector localizes the objects of interest and the feature extractor creates a discriminative descriptor regarding the target classes which can than be compared to query samples.
 
 % Detector Frameworks: Faster R-CNN~\cite{ren2015}, SSD~\cite{liu2016b}, Yolo~\cite{redmon2016}, ...
 \subsection{Object Detector Frameworks}
@@ -358,7 +358,7 @@ test  & FlickrLogos-32 test & 32    & 1.602 \bigstrut[t]\\
 In the first step, the detector stage alone is assessed. Then, the combination of detection and comparison for logo retrieval is evaluated. 
 Detection and matching performance is measured by the \ac{FROC} curve~\cite{miller1969} which denotes the detection or detection and identification rate versus the number of false detections.
 
-In all cases, the \acp{CNN} are trained until convergence. Due to the diversity of applied networks and differing dataset sizes, training settings are numerous and optimized in each case with the validation data. Convergence occurs after 1,000 to 80,000 training iterations with a batch-size between 1 for the Faster R-CNN detector and 32 for the VGG16 training. 
+In all cases, the \acp{CNN} are trained until convergence. Due to the diversity of applied networks and differing dataset sizes, training settings are numerous and optimized in each case with the validation data. Convergence occurs after 200 to 8,000 training iterations with a batch-size between 1 for the Faster R-CNN detector, 32 for the VGG16, 18 for the ResNet101 and 7 for the DenseNet161 training, due to GPU memory limitation.
 %Training duration depends on the architecture as well as the amount of training data.
 %TODO write text here
 

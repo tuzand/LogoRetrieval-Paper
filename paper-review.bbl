@@ -262,4 +262,9 @@ Weber, M., B{\"a}uml, M., and Stiefelhagen, R. (2011).
 \newblock In {\em Advanced Video and Signal-Based Surveillance (AVSS), 2011 8th
   IEEE International Conference on}, pages 361--366. IEEE.
 
+\bibitem[Zheng et~al., 2016]{zheng2016b}
+Zheng, L., Zhang, H., Sun, S., Chandraker, M., and Tian, Q. (2016).
+\newblock {P}erson {R}e-identification in the {W}ild.
+\newblock {\em CoRR}, abs/1604.02531.
+
 \end{thebibliography}
