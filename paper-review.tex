@@ -102,7 +102,7 @@
 \abstract{
 %%TODO write text here, 70-200 words
 Current logo retrieval research focuses on closed set scenarios. We argue that the logo domain is too large for this strategy and requires an open set approach. To foster research in this direction, a large-scale logo dataset, called Logos in the Wild, is collected and released to the public.
-A typical open set logo retrieval applications is, for example, judging the effectiveness of advertisement in sports event broadcasts. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a set of images or videos. Currently common logo retrieval approaches are unsuitable for this task because of their closed world assumption. Thus, an open set logo retrieval method is proposed in this work which allows searching for previously unfamiliar logos by a single query sample. A two stage concept with separate logo detection and comparison is proposed where both modules are based on task specific \acp{CNN}. If trained with the Logos in the Wild data, significant performance improvements are observed, especially compared with state-of-the-art closed set approaches.
+A typical open set logo retrieval application is, for example, judging the effectiveness of advertisement in sports event broadcasts. Given a query sample in shape of a logo image, the task is to find all further occurrences of this logo in a set of images or videos. Currently, common logo retrieval approaches are unsuitable for this task because of their closed world assumption. Thus, an open set logo retrieval method is proposed in this work which allows searching for previously unfamiliar logos by a single query sample. A two stage concept with separate logo detection and comparison is proposed where both modules are based on task specific \acp{CNN}. If trained with the Logos in the Wild data, significant performance improvements are observed, especially compared with state-of-the-art closed set approaches.
 %serves to train the modules with sufficient appropriate in-the-wild data. 
 %The proposed method extends the application field in comparison to closed set approaches and significant improvements over baseline methods derived from these state-of-the-art closed set approaches are shown. 
 }
@@ -126,8 +126,8 @@ A typical open set logo retrieval applications is, for example, judging the effe
 %  - open set logo retrieval system with search image as query \\
 %  - introduction of novel logo dataset \\
 \noindent Automated search for logos is a desirable task in visual image analysis.
-A key application is the effectiveness measurement of advertisements. Being able to find all logos that match a query, for example, a logo of a specific company, in images allows to assess the visual frequency and prominence of logos in TV broadcasts. Typically, these broadcasts are sports events where sponsorship and advertisement is very common. 
-This requires a flexible system where the query can easily be defined and switched according to the current task. Especially, also previously unseen logos should be found if one query sample is available.
+A key application is the effectiveness measurement of advertisements. Being able to find all logos in images, that match a query, for example a logo of a specific company, allows to assess the visual frequency and prominence of logos in TV broadcasts. Typically, these broadcasts are sports events where sponsorship and advertisement is very common. 
+This requires a flexible system where the query can be easily defined and switched according to the current task. Especially, also previously unseen logos should be found even if only one query sample is available.
 %In general, open set retrieval is understood as finding instances of the same class in a database given a single instance from this class which has never been seen before. Usually classes originate from the same category with logos being an example. Thus, prior knowledge about this category can be used to build appropriate retrieval methods. In most applications this prior knowledge is given in shape of training data.
 This requirement excludes basically all current logo retrieval approaches because they make a closed world assumption where all searched logos are known beforehand. Instead, this paper focuses on open set logo retrieval where only one sample image of a logo is available. 
 
@@ -213,7 +213,7 @@ The recent DenseNet \cite{huang2016} builds on a ResNet-like architecture and in
 & combined & 80 (union) & 15,598 & 23,222 \bigstrut \\
 \hline
 %\begin{minipage}[c]{0.1cm}\vertboxt{new}\end{minipage} & Logos in the Wild & 868 & 11,039 & 32,808 \bigstrut[t]
-\begin{minipage}[c]{0.1cm}\vertboxt{new}\end{minipage} & Logos in the Wild & 872 & 11,054 & 32,850 \bigstrut[t]
+\begin{minipage}[c]{0.1cm}\vertboxt{new}\end{minipage} & Logos in the Wild & 871 & 11,054 & 32,850 \bigstrut[t]
 \end{tabular}
 \end{small}
 \end{table*}
@@ -301,7 +301,7 @@ For each search result, the first $N$ images are downloaded, where $N$ is determ
 After removing duplicates, this results in 4~to 608~images per searched brand. These images are then one-by-one manually annotated with logo bounding boxes or sorted out if unsuitable.
 Images are considered unsuitable if they contain no logos or fail the in-the-wild requirement, which is the case for the original raw logo graphics. Taken pictures of such logos and advertisement posters on the other hand are desired to be in the dataset. 
 Annotations distinguish between textual and graphical logos as well as different logos from one company as exemplary indicated in figure~\ref{fig:annotatedSample}.
-Altogether, the current version of the dataset, contains 872 brands with 32,850 annotated bounding boxes. 238 brands occur at least 10 times. An image may contain several logos with the maximum being 118 logos in one image. The full distributions are shown in figures~\ref{fig:brandDistribution} and~\ref{fig:logoDistribution}. 
+Altogether, the current version of the dataset, contains 871 brands with 32,850 annotated bounding boxes. 238 brands occur at least 10 times. An image may contain several logos with the maximum being 118 logos in one image. The full distributions are shown in figures~\ref{fig:brandDistribution} and~\ref{fig:logoDistribution}. 
 
 The collected Logos in the Wild dataset exceeds the size of all related logo datasets as shown in table~\ref{tab:logoDatasets}. Even the union of all related logo datasets contains significantly less brands and RoIs which makes Logos in the Wild a valuable large-scale dataset.
 As the annotation is still an ongoing process, different dataset revisions will be tagged by version numbers for future reference. Note that the numbers in table~\ref{tab:logoDatasets} are the current state (v2.0) whereas detector and feature extractor training used a slightly earlier version with numbers given in table~\ref{tab:trainTestStatistics} (v1.0) because of the required time for training and evaluation.
